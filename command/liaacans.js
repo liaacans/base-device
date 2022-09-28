@@ -39,6 +39,7 @@ var { JSDOM } = require('jsdom')
 var speed = require('performance-now')
 var { performance } = require('perf_hooks')
 var { smsg, formatp, tanggal, formatDate, getTime, isUrl, sleep, clockString, runtime, fetchJson, getBuffer, jsonformat, format, parseMention, getRandom } = require('../message/myfunc')
+var { pinterest, wallpaper, wikimedia, quotesAnime } = require('../message/scraper')
 
 //━━━━━━━━━━━━━━━[ THUMBNAIL ]━━━━━━━━━━━━━━━━━//
 
@@ -108,10 +109,12 @@ if (chats) {
 if (!('mute' in chats)) chats.mute = false
 if (!('antilink' in chats)) chats.antilink = false
 if (!('antiwame' in chats)) chats.antiwame = false
+if (!('antiviewonce' in chats)) chats.antiviewonce = false
 } else global.db.data.chats[m.chat] = {
 mute: false,
 antilink: false,
-antiwame: true,
+antiwame: false,
+antiviewonce: false
 }
 
 var creator = '©Created By : LiaaCans BOT'
@@ -159,7 +162,11 @@ await liaacans.setStatus(`${liaacans.user.name} | Runtime : ${runtime(process.up
 setting.status = new Date() * 1
 }
 }
-	    
+
+//━━━━━━━━━━━━━━━[ Waktu Asia ]━━━━━━━━━━━━━━━━━//
+
+const time = moment().tz('Asia/Jakarta').format("HH:mm:ss")
+
 //━━━━━━━━━━━━━━━[ FUNCTION GROUP ]━━━━━━━━━━━━━━━━━//
 
 if (db.data.chats[m.chat].antilink) {
@@ -185,6 +192,27 @@ m.reply(`「 ANTI WAME 」\n\nKamu terdeteksi mengirim link wame, maaf kamu akan
 liaacans.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
 }
 }
+
+if (db.data.chats[m.chat].antiviewonce) {
+		if (m.isGroup && m.mtype == 'viewOnceMessage') {
+			let teks = `「 *Anti ViewOnce Message* 」
+    
+    🤠 *Name* : ${pushname}
+    👾 *User* : @${m.sender.split("@")[0]}
+    ⏰ *Clock* : ${moment.tz('Asia/Jakarta').format('HH:mm:ss')} WIB
+    
+    💫 *MessageType* : ${m.mtype}`
+     m.reply(teks)
+			await sleep(500)
+			m.copyNForward(m.chat, true, {
+				readViewOnce: true
+			}, {
+				quoted: mek
+			}).catch(_ => m.reply('Mungkin dah pernah dibuka bot'))
+		}
+}
+
+
         
 //━━━━━━━━━━━━━━━[ MUTE ]━━━━━━━━━━━━━━━━━//
 
@@ -473,11 +501,15 @@ user.afkTime = -1
 luser.afkReason = ''
 }
 
+//Push command To Console
+if (command) {
+console.log('\x1b[1;31m~\x1b[1;37m>', '[\x1b[1;32m LIAACANS \x1b[1;37m]', time, chalk.green(budy || m.mtype), 'Dari', chalk.blue(pushname), 'Di', chalk.yellow(groupName ? groupName : 'Private Chat' ), 'args :', chalk.white(args.length))
+}
 //━━━━━━━━━━━━━━━[ FITURNYA ]━━━━━━━━━━━━━━━━━//
 
 switch(command) {
-case 'menu': case 'help': case 'p': {
-menu =` Hy Im Is A Bot Is there anything I can help ?
+case 'liacans':
+ m.reply(`Hy Im Is A Bot Is there anything I can help ?
 Please Choose an Order Below
 
 ❖ Info Bot ❖
@@ -494,8 +526,10 @@ Please Choose an Order Below
 ├│${prefix}add
 ├│${prefix}promote
 ├│${prefix}demote
+├│${prefix}delete
 ├│${prefix}setname
 ├│${prefix}setdesc
+├│${prefix}revoke
 ├│${prefix}setppgrup
 ├│${prefix}tagall
 ├│${prefix}hidetag
@@ -508,6 +542,7 @@ Please Choose an Order Below
 ├│${prefix}editinfo
 ├│${prefix}antilink
 ├│${prefix}antiwame
+├│${prefix}antiviewonce
 └─❖
 ┌─❖ ⌜ Fun Menu ⌟
 ├│${prefix}jadian
@@ -521,9 +556,100 @@ Please Choose an Order Below
 └─❖
 ┌─❖ ⌜ Converter Menu ⌟
 ├│${prefix}sticker
+├│${prefix}tourl
 ├│${prefix}toimage
 ├│${prefix}tovideo
 ├│${prefix}tomp3
+└─❖
+┌─❖ ⌜ Random Menu ⌟
+├│${prefix}pinterest
+├│${prefix}wallpaper
+├│${prefix}quotesanime
+├│${prefix}wikimedia
+└─❖
+┌─❖ ⌜ Download Menu ⌟
+├│${prefix}play
+├│${prefix}yts
+├│${prefix}ytmp3
+├│${prefix}ytmp4
+└─❖
+┌─❖ ⌜ Owner Menu ⌟
+├│${prefix}ping
+├│${prefix}owner
+├│${prefix}sc
+├│${prefix}join
+├│${prefix}leave
+├│${prefix}block
+├│${prefix}unblock
+├│${prefix}bc
+├│${prefix}bcgc
+└─❖
+`)
+break
+case 'menu': case 'help': case '?':
+    menu = `Hy Im Is A Bot Is there anything I can help ?
+Please Choose an Order Below
+
+❖ Info Bot ❖
+
+🐰Bot Name : ${botname}
+🦅Owner : ${owner}
+🐶Owner Name : ${name}
+🐭Creator : ${name}
+
+❖ [ List All Menu ] ❖
+
+┌─❖ ⌜ Group Menu ⌟
+├│${prefix}kick
+├│${prefix}add
+├│${prefix}promote
+├│${prefix}demote
+├│${prefix}delete
+├│${prefix}setname
+├│${prefix}setdesc
+├│${prefix}revoke
+├│${prefix}setppgrup
+├│${prefix}tagall
+├│${prefix}hidetag
+├│${prefix}vote
+├│${prefix}upvote
+├│${prefix}devote
+├│${prefix}cekvote
+├│${prefix}delvote
+├│${prefix}group
+├│${prefix}editinfo
+├│${prefix}antilink
+├│${prefix}antiwame
+├│${prefix}antiviewonce
+└─❖
+┌─❖ ⌜ Fun Menu ⌟
+├│${prefix}jadian
+├│${prefix}jodohku
+├│${prefix}tictactoe
+├│${prefix}delttt
+├│${prefix}family100
+├│${prefix}tebak
+├│${prefix}math
+├│${prefix}suitpvp
+└─❖
+┌─❖ ⌜ Converter Menu ⌟
+├│${prefix}sticker
+├│${prefix}tourl
+├│${prefix}toimage
+├│${prefix}tovideo
+├│${prefix}tomp3
+└─❖
+┌─❖ ⌜ Random Menu ⌟
+├│${prefix}pinterest
+├│${prefix}wallpaper
+├│${prefix}quotesanime
+├│${prefix}wikimedia
+└─❖
+┌─❖ ⌜ Download Menu ⌟
+├│${prefix}play
+├│${prefix}yts
+├│${prefix}ytmp3
+├│${prefix}ytmp4
 └─❖
 ┌─❖ ⌜ Owner Menu ⌟
 ├│${prefix}ping
@@ -562,8 +688,7 @@ displayText: 'Script',
 id: 'sc'
 }
 }]
-liaacans.send5ButImg(m.chat, menu, creator, image, btn)
-}
+liaacans.sendButtonImg(m.chat, menu, creator, image, btn)
 break
 case 'sc': case 'script': case 'sourcecode': {
 teks =`❖ Source Code By ❖
@@ -605,7 +730,14 @@ id: 'menu'
 liaacans.send5ButImg(m.chat, teks, creator, image, btn)
 }
 break
-
+case 'revoke': {
+  if (!m.isGroup) return m.reply(mess.group)
+  if (!isBotAdmins) return m.reply(mess.botAdmin)
+  if (!isAdmins) return m.reply(mess.admin)
+  await liaacans.groupRevokeInvite(m.chat)
+  m.reply(`SUKSES RESET LINK GRUP`)
+  }
+  break
 case 'kick': {
 if (!m.isGroup) throw mess.group
 if (!isBotAdmins) throw mess.botAdmin
@@ -899,6 +1031,27 @@ let buttons = [
 { buttonId: 'antilink off', buttonText: { displayText: 'Off' }, type: 1 }
 ]
 await liaacans.sendButtonText(m.chat, buttons, `Mode Antilink`, creator, m)
+}
+}
+break
+case 'antiviewonce': {
+if (!m.isGroup) throw mess.group
+if (!isBotAdmins) throw mess.botAdmin
+if (!isAdmins) throw mess.admin
+if (args[0] === "on") {
+if (db.data.chats[m.chat].antiviewonce) return m.reply(`Sudah Aktif Sebelumnya`)
+db.data.chats[m.chat].antiviewonce = true
+m.reply(`Antiviewonce Aktif !`)
+} else if (args[0] === "off") {
+if (!db.data.chats[m.chat].antiviewonce) return m.reply(`Sudah Tidak Aktif Sebelumnya`)
+db.data.chats[m.chat].antiviewonce = false
+m.reply(`Antiviewonce Tidak Aktif !`)
+} else {
+let buttons = [
+{ buttonId: 'antiviewonce on', buttonText: { displayText: 'On' }, type: 1 },
+{ buttonId: 'antiviewonce off', buttonText: { displayText: 'Off' }, type: 1 }
+]
+await liaacans.sendButtonText(m.chat, buttons, `Mode Antiviewonce`, creator, m)
 }
 }
 break
@@ -1325,6 +1478,147 @@ await liaacans.sendMessage(m.chat, { video: { url: webpToMp4.result, caption: 'C
 await fs.unlinkSync(media)
 }
 break
+case 'tourl': {
+  m.reply(mess.wait)
+  let { UploadFileUgu, webp2mp4File, TelegraPh } = require('../lib/uploader')
+  let media = await liaacans.downloadAndSaveMediaMessage(quoted)
+  if (/image/.test(mime)) {
+  let anu = await TelegraPh(media)
+  m.reply(util.format(anu))
+  } else if (!/image/.test(mime)) {
+  let anu = await UploadFileUgu(media)
+  m.reply(util.format(anu))
+  }
+  await fs.unlinkSync(media)
+  }
+  break
+//Random Menu
+case 'pinterest': {
+  if (!text) return m.reply(`Mau Cari Apa Di ${command}?\nExample : *${prefix + command} hinata*`)
+  m.reply(mess.wait)
+  let anu = await pinterest(text)
+  result = anu[Math.floor(Math.random() * anu.length)]
+  let buttonspinterest = [{buttonId: `pinterest ${text}`, buttonText: {displayText: 'Next Result'}, type: 1}]
+  liaacans.sendMessage(m.chat, { image: { url: result }, caption: 'Source Url : '+result, buttons: buttonspinterest }, { quoted: m })
+  }
+  break
+case 'wallpaper': {
+  if (!text) return m.reply(`Mau Cari Apa Di ${command}?\nExample : *${prefix + command} hinata*`)
+  m.reply(mess.wait)
+  let anu = await wallpaper(text)
+  result = anu[Math.floor(Math.random() * anu.length)]
+  let buttonswallpaper = [{buttonId: `wallpaper ${text}`, buttonText: {displayText: 'Next Result'}, type: 1}]
+  liaacans.sendMessage(m.chat, { image: { url: result.image[0] }, caption: `Source Url : ${result.image[2] || result.image[1] || result.image[0]}`, buttons: buttonswallpaper }, { quoted: m })
+  }
+  break
+case 'quotesanime': {
+  m.reply(mess.wait)
+  let anu = await quotesAnime()
+  result = anu[Math.floor(Math.random() * anu.length)]
+  let buttonsquotes = [{buttonId: `quotesanime`, buttonText: {displayText: 'Next Result'}, type: 1}]
+  liaacans.sendButtonText(m.chat, buttonsquotes, `${result.quotes}\n\nBy : ${result.karakter}`, global.ownerName, m)
+  }
+  break
+case 'wikimedia': {
+  if (!text) return 'Masukkan Query Title'
+  let wiki = await wikimedia(text)
+  result = wiki[Math.floor(Math.random() * wiki.length)]
+  let buttons = [{buttonId: `wikimedia ${text}`, buttonText: {displayText: 'Next Result'}, type: 1}]
+  let buttonMessage = {
+  image: { url: result.image },
+  caption: `📄 Title : ${result.title}
+📬 Source : ${result.source}
+🔗 Media Url : ${result.image}`,
+  footer: global.ownerName,
+  buttons: buttons,
+  headerType: 4
+  }
+  liaacans.sendMessage(m.chat, buttonMessage, { quoted: m })
+  }
+  break
+//Downloader
+case 'ytmp4': case 'ytvideo': case 'ytv': {
+  let { ytv } = require('../message/y2mate')
+  if (!q) return m.reply(`Gunakan Format : ${command} linknya`)
+  if (!isUrl(q)) return m.reply('Link Invalid ❎')
+  if (!q.includes('youtube')/('youtu.be')) return m.reply('Link Invalid ❎')
+  await m.reply(mess.wait)
+  let quality = args[1] ? args[1] : '360p'
+  let media = await ytv(text, quality)
+  if (media.filesize >= 100000) return m.reply('File Melebihi Batas Silahkan Download Sendiri : '+media.dl_link)
+  var caption = `---- Youtube Downloader -----
+  
+📄 Judul : ${media.title}
+🎚️ Size : ${media.filesizeF}
+🔗 Url : ${isUrl(text)}
+📥 Format : MP4
+📮 Resolusi : ${args[1] || '360p'}`
+  liaacans.sendMessage(m.chat, { video: { url: media.dl_link }, mimetype: 'video/mp4', fileName: `${media.title}.mp4`, caption: caption }, { quoted: m })
+  }
+  break
+case 'ytmp3': case 'ytaudio': case 'yta': {
+  let { yta } = require('../message/y2mate')
+  if (!q) return m.reply(`Gunakan Format : ${command} linknya`)
+  if (!isUrl(q)) return m.reply('Link Invalid ❎')
+  if (!q.includes('youtube')/('youtu.be')) return m.reply('Link Invalid ❎')
+  await m.reply(mess.wait)
+  let quality = args[1] ? args[1] : '128kbps'
+  let media = await yta(text, quality)
+  if (media.filesize >= 100000) return m.reply('File Melebihi Batas Silahkan Download Sendiri : '+media.dl_link)
+  var caption = `*------ Youtube Downloader -----*
+
+📄 Title : ${media.title}
+🎚️ Size : ${media.filesizeF}
+🔗 Url : ${isUrl(text)}
+📥 Format : MP3
+📮 Resolusi : ${args[1] || '128kbps'}`
+  liaacans.sendImage(m.chat, media.thumb, caption, m)
+  liaacans.sendMessage(m.chat, { audio: { url: media.dl_link }, mimetype: 'audio/mpeg', fileName: `${media.title}.mp3` }, { quoted: m })
+  }
+  break
+case 'yts': case 'ytsearch': {
+  m.reply(mess.wait)
+  if (!text) return `Example : ${prefix + command} story wa anime`
+  let yts = require("yt-search")
+  let search = await yts(text)
+  let teks = '*---- Data Ditemukan ----*\n\n Keywords : '+text+'\n\n'
+  let no = 1
+  for (let i of search.all) {
+  teks += `🔢 No : ${no++}
+🎞️ Type : ${i.type}
+📀 Video ID : ${i.videoId}
+📄 Title : ${i.title}
+👁️ Views : ${i.views}
+👁️ Duration : ${i.timestamp}
+📤 Upload : ${i.ago}
+👨‍🎤 Author : ${i.author.name}
+🔗 Url : ${i.url}\n\n─────────────────\n\n`
+  }
+  liaacans.sendMessage(m.chat, { image: { url: search.all[0].thumbnail },  caption: teks }, { quoted: m })
+  }
+  break
+case 'play':
+  if (!text) return `Example : ${prefix + command} story wa anime`
+  let yts = require("yt-search")
+  let search = await yts(text)
+  let anu = search.videos[Math.floor(Math.random() * search.videos.length)]
+  let buttons = [{buttonId: `ytmp3 ${anu.url}`, buttonText: {displayText: 'Audio 🎵'}, type: 1}, {buttonId: `ytmp4 ${anu.url}`, buttonText: {displayText: 'Video 🎦'}, type: 1}]
+  let buttonMessage = {
+  image: { url: anu.thumbnail },
+  caption: `*----- DATA DITEMUKAN -----*
+  
+*📄 Title :* ${anu.title}
+*⌚ Duration :* ${anu.timestamp}
+*👁️ Viewers :* ${anu.views}
+*📤 Upload :* ${anu.ago}
+*👨‍🎤 Channel :* ${anu.author.url}
+*🔗 Url :* ${anu.url}`,
+  footer: global.ownerName,
+  buttons: buttons,
+  headerType: 4
+  }
+  liaacans.sendMessage(m.chat, buttonMessage, { quoted: m })
+  break
 case 'join': {
 if (!isCreator) throw mess.owner
 if (!text) throw 'Masukkan Link Group!'
@@ -1431,6 +1725,13 @@ liaacans.send5ButImg(i, txt, creator, image, btn)
 m.reply(`Sukses Mengirim Broadcast Ke ${anu.length} Group`)
 }
 break
+case 'delete': case 'del': {
+                if (!m.quoted) throw false
+                let { chat, fromMe, id, isBaileys } = m.quoted
+                if (!isBaileys) throw 'Pesan tersebut bukan dikirim oleh bot!'
+                liaacans.sendMessage(m.chat, { delete: { remoteJid: m.chat, fromMe: true, id: m.quoted.id, participant: m.quoted.sender } })
+            }
+            break
 //━━━━━━━━━━━━━━━[ AKHIR FITUR ]━━━━━━━━━━━━━━━━━//
 
 default:
