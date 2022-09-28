@@ -93,7 +93,7 @@ liaacans.ev.on('groups.update', async pea => {
 try {
 ppgc = await liaacans.profilePictureUrl(pea[0].id, 'image')
 } catch {
-ppgc = 'https://shortlink.liaacansarridho.my.id/rg1oT'
+ppgc = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
 }
 let wm_fatih = { url : ppgc }
 if (pea[0].announce == true) {
@@ -250,6 +250,19 @@ imageMessage: message.imageMessage,
 liaacans.relayMessage(jid, template.message, { messageId: template.key.id })
 }
 
+/** Send Button 5 Image
+   *
+   * @param {*} jid
+   * @param {*} text
+   * @param {*} footer
+   * @param {*} image
+   * @param [*] button
+   * @param {*} options
+   * @returns
+   */
+   liaacans.sendButtonImg = async (jid , text = '' , footer = '', img, but = [], buff, options = {}) =>{
+   liaacans.sendMessage(jid, { image: img, caption: text, footer: footer, templateButtons: but, ...options })
+   }
 /**
 * 
 * @param {*} jid 
