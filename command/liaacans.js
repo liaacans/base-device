@@ -163,9 +163,13 @@ setting.status = new Date() * 1
 }
 }
 
-//━━━━━━━━━━━━━━━[ Waktu Asia ]━━━━━━━━━━━━━━━━━//
+//━━━━━━━━━━━━━━━[ Waktu Asia & Auto Read ]━━━━━━━━━━━━━━━━━//
 
 const time = moment().tz('Asia/Jakarta').format("HH:mm:ss")
+
+if (m.message) {
+            liaacans.readMessages([m.key])
+        }
 
 //━━━━━━━━━━━━━━━[ FUNCTION GROUP ]━━━━━━━━━━━━━━━━━//
 
