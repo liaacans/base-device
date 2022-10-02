@@ -224,6 +224,28 @@ console.log('Connected...', update)
 
 liaacans.ev.on('creds.update', saveState)
 
+/** Send List Messaage
+      *
+      *@param {*} jid
+      *@param {*} text
+      *@param {*} footer
+      *@param {*} title
+      *@param {*} butText
+      *@param [*] sections
+      *@param {*} quoted
+      */
+        liaacans.sendListMsg = (jid, text = '', footer = '', title = '' , butText = '', sects = [], quoted) => {
+        let sections = sects
+        var listMes = {
+        text: text,
+        footer: footer,
+        title: title,
+        buttonText: butText,
+        sections
+        }
+        liaacans.sendMessage(jid, listMes, { quoted: quoted })
+        }
+
 // Add Other
 /** Send Button 5 Image
 *
