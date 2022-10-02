@@ -31,17 +31,18 @@ const chalk = require('chalk')
 //━━━━━━━━━━━━━━━[ WEBSITE APIKEY ]━━━━━━━━━━━━━━━━━//
 
 global.APIs = {
-ZeroYT7: 'Link Api Web',
+liaacans: 'https://zenzapis.xyz',
 }
 
 //━━━━━━━━━━━━━━━[ APIKEY ]━━━━━━━━━━━━━━━━━//
 
 global.APIKeys = {
-'Link Api Web': 'Your Apikey',
+'https://zenzapis.xyz': '0e92565522',
 }
 
 //━━━━━━━━━━━━━━━[ SETTING ]━━━━━━━━━━━━━━━━━//
-global.name = 'Aulia Rahman (Owner)'
+global.thumb = fs.readFileSync('./image/thumbnail.jpg')
+global.name = 'Aulia Rahman (Owner)',
 global.owner = ['6285821676621']
 global.premium = ['6285821676621']
 global.botname = 'LiaaCans BOT'
