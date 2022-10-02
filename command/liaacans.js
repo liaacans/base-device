@@ -888,7 +888,7 @@ if (!m.isGroup) throw mess.group
 if (!isBotAdmins) throw mess.botAdmin
 if (!isAdmins) throw mess.admin
 let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
-await liaacans.groupParticipantsUpdate(m.chat, [users], 'remove').then((res) => m.reply(`Sukses Kick ${pushname}`))
+await liaacans.groupParticipantsUpdate(m.chat, [users], 'remove').then((res) => m.reply(`Sukses Kick Member Tidak Berguna`))
 }
 break
 case 'add': {
@@ -896,7 +896,7 @@ if (!m.isGroup) throw mess.group
 if (!isBotAdmins) throw mess.botAdmin
 if (!isAdmins) throw mess.admin
 let users = m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
-await liaacans.groupParticipantsUpdate(m.chat, [users], 'add').then((res) => m.reply(`Sukses Add ${pushname}`))
+await liaacans.groupParticipantsUpdate(m.chat, [users], 'add').then((res) => m.reply(`Sukses Add Member Berguna`))
 }
 break
 case 'promote': {
@@ -904,7 +904,7 @@ if (!m.isGroup) throw mess.group
 if (!isBotAdmins) throw mess.botAdmin
 if (!isAdmins) throw mess.admin
 let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
-await liaacans.groupParticipantsUpdate(m.chat, [users], 'promote').then((res) => m.reply(`Sukses Promote ${pushname}`))
+await liaacans.groupParticipantsUpdate(m.chat, [users], 'promote').then((res) => m.reply(`Sukses Member Sebagai Admin`))
 }
 break
 case 'demote': {
@@ -912,7 +912,7 @@ if (!m.isGroup) throw mess.group
 if (!isBotAdmins) throw mess.botAdmin
 if (!isAdmins) throw mess.admin
 let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
-await liaacans.groupParticipantsUpdate(m.chat, [users], 'demote').then((res) => m.reply(`Sukses Demote ${pushname}`))
+await liaacans.groupParticipantsUpdate(m.chat, [users], 'demote').then((res) => m.reply(`Sukses Admin Sebagai Member`))
 }
 break
 case 'setname': case 'setsubject': {
@@ -920,7 +920,7 @@ if (!m.isGroup) throw mess.group
 if (!isBotAdmins) throw mess.botAdmin
 if (!isAdmins) throw mess.admin
 if (!text) throw 'Teks Nya Mana Bos ?'
-await liaacans.groupUpdateSubject(m.chat, text).then((res) => m.reply(`Sukses Setname Grup ${metadata.subject}`))
+await liaacans.groupUpdateSubject(m.chat, text).then((res) => m.reply(`Sukses Setname Grup Ini!`))
 }
 break
 case 'setdesc': case 'setdesk': {
@@ -928,7 +928,7 @@ if (!m.isGroup) throw mess.group
 if (!isBotAdmins) throw mess.botAdmin
 if (!isAdmins) throw mess.admin
 if (!text) throw 'Teks Nya Mana Bos ?'
-await liaacans.groupUpdateDescription(m.chat, text).then((res) => m.reply(`Sukses Setdesc ${metadata.subject}`))
+await liaacans.groupUpdateDescription(m.chat, text).then((res) => m.reply(`Sukses Setdesc Grup Ini`))
 }
 break
 case 'public': {
