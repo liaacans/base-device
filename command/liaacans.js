@@ -145,6 +145,7 @@ antiwame: false,
 antiviewonce: false
 }
 
+
 var creator = '©Created By : LiaaCans BOT'
 		
 let setting = global.db.data.settings[botNumber]
@@ -250,7 +251,7 @@ if (db.data.chats[m.chat].antiviewonce) {
 
 
         
-//━━━━━━━━━━━━━━━[ MUTE ]━━━━━━━━━━━━━━━━━//
+//━━━━━━━━━━━━━━━[ MUTE & AUTO KETIK ]━━━━━━━━━━━━━━━━━//
 
 if (db.data.chats[m.chat].mute && !isAdmins && !isCreator) {
 return
@@ -708,6 +709,10 @@ group = `┌─❖ ⌜ GROUP MENU ⌟
 ├│${prefix}delvote
 ├│${prefix}group
 ├│${prefix}editinfo
+├│${prefix}mute
+├│${prefix}antilink
+├│${prefix}antiwame
+├│${prefix}antiviewonce
 └─❖`
 let buttons = [{ buttonId: 'menu', buttonText: { displayText: '️Back Menu' }, type: 1 },{ buttonId: 'sc', buttonText: { displayText: 'Script Bot' }, type: 1 },{ buttonId: 'owner', buttonText: { displayText: 'Owner' }, type: 1 }]
             await liaacans.sendButtonText(m.chat, buttons, group)
@@ -847,9 +852,21 @@ mkrmnu = `┌─❖ ⌜ Maker Menu ⌟
 ├│${prefix}neon
 └─❖`
 let buttons = [{ buttonId: 'menu', buttonText: { displayText: '️Back Menu' }, type: 1 },{ buttonId: 'sc', buttonText: { displayText: 'Script Bot' }, type: 1 },{ buttonId: 'owner', buttonText: { displayText: 'Owner' }, type: 1 }]
-            await liaacans.sendButtonText(m.chat, buttons, chargermenu)
+            await liaacans.sendButtonText(m.chat, buttons, mkrmnu)
             }
             break
+case 'donasi': {
+donasi = `*「 🐰DONASI BY LIAACANS🐰 」*
+
+• Payment : Ovo/Dana/Gopay
+• Nomor Payment : Cht Owner!
+• Pulsa : ${global.pulsa}
+
+Donasi Ya Kak!! Biar Bot On Terus!`
+let buttons = [{ buttonId: 'owner', buttonText: { displayText: 'Owner' }, type: 1 }]
+await liaacans.sendButtonText(m.chat, buttons, donasi)
+}
+break
 case 'sc': case 'script': case 'sourcecode': {
 source =`❖ Source Code By ❖
 
@@ -934,7 +951,7 @@ break
 case 'public': {
                 if (!isCreator) throw mess.owner
                 liaacans.public = true
-                m.reply('*Sukse Change To Public Usage*')
+                m.reply('*Sukses Change To Public Usage*')
             }
             break
             case 'self': {
@@ -1338,7 +1355,7 @@ case 'bass': case 'blown': case 'deep': case 'earrape': case 'fast': case 'fat':
 Info: *bold* hash is Locked
 ${Object.entries(global.db.data.sticker).map(([key, value], index) => `${index + 1}. ${value.locked ? `*${key}*` : key} : ${value.text}`).join('\n')}
 `.trim()
-                naze.sendText(m.chat, teks, m, { mentions: Object.values(global.db.data.sticker).map(x => x.mentionedJid).reduce((a,b) => [...a, ...b], []) })
+                liaacans.sendText(m.chat, teks, m, { mentions: Object.values(global.db.data.sticker).map(x => x.mentionedJid).reduce((a,b) => [...a, ...b], []) })
             }
             break
             case 'lockcmd': {
@@ -1368,7 +1385,7 @@ Lihat list Pesan Dengan ${prefix}listmsg`)
                 if (!text) throw `Example : ${prefix + command} file name\n\nLihat list pesan dengan ${prefix}listmsg`
                 let msgs = global.db.data.database
                 if (!(text.toLowerCase() in msgs)) throw `'${text}' tidak terdaftar di list pesan`
-                naze.copyNForward(m.chat, msgs[text.toLowerCase()], true)
+                liaacans.copyNForward(m.chat, msgs[text.toLowerCase()], true)
             }
             break
             case 'listmsg': {
@@ -1397,7 +1414,7 @@ case 'anonymous': {
                 liaacans.sendButtonText(m.chat, buttons, `\`\`\`Hi ${await liaacans.getName(m.sender)} Welcome To Anonymous Chat\n\nKlik Button Dibawah Ini Untuk Mencari Partner\`\`\``, liaacans.user.name, m)
             }
 	    break
-	    case 'keluar': case 'leave': {
+	    case 'keluar': {
                 if (m.isGroup) return m.reply('Fitur Tidak Dapat Digunakan Untuk Group!')
                 this.anonymous = this.anonymous ? this.anonymous : {}
                 let room = Object.values(this.anonymous).find(room => room.check(m.sender))
@@ -2080,6 +2097,7 @@ ${id}`)
 		}
 		break
 case 'ytmp3': case 'ytaudio': case 'yta': {
+  if (!isPremium) throw `emg lu premium banh??`
   let { yta } = require('../message/y2mate')
   if (!q) return m.reply(`Gunakan Format : ${command} linknya`)
   if (!isUrl(q)) return m.reply('Link Invalid ❎')
@@ -2121,6 +2139,7 @@ case 'yts': case 'ytsearch': {
   }
   break
 case 'play':
+  if (!isPremium) throw `emg lu premium banh?`
   if (!text) return `Example : ${prefix + command} story wa anime`
   let yts = require("yt-search")
   let search = await yts(text)
@@ -2143,6 +2162,7 @@ case 'play':
   liaacans.sendMessage(m.chat, buttonMessage, { quoted: m })
   break
 case 'tiktokmp3': case 'tiktokaudio': {
+                if (!isPremium) throw `emg lu premium banh??`
                 if (!text) throw 'Masukkan Query Link!'
                 m.reply(mess.wait)
                 let anu = await fetchJson(`https://anabotofc.herokuapp.com/api/download/tiktok2?url=${text}&apikey=AnaBot`)
@@ -2161,6 +2181,7 @@ case 'tiktokmp3': case 'tiktokaudio': {
             }
             break
 	        case 'instagram': case 'ig': case 'igdl': {
+	        if (!isPremium) throw `emg lu premium banh??`
                 if (!text) throw 'No Query Url!'
                 m.reply(mess.wait)
                 if (/(?:\/p\/|\/reel\/|\/tv\/)([^\s&]+)/.test(isUrl(text)[0])) {
@@ -2173,6 +2194,7 @@ case 'tiktokmp3': case 'tiktokaudio': {
             }
             break
             case 'joox': case 'jooxdl': {
+                if (!isPremium) throw `emg lu premium banhh??`
                 if (!text) throw 'No Query Title'
                 m.reply(mess.wait)
                 let anu = await fetchJson(api('zenz', '/downloader/joox', { query: text }, 'apikey'))
@@ -2181,6 +2203,7 @@ case 'tiktokmp3': case 'tiktokaudio': {
             }
             break
             case 'soundcloud': case 'scdl': {
+                if (!isPremium) throw `emg lu premium banhh??`
                 if (!text) throw 'No Query Title'
                 m.reply(mess.wait)
                 let anu = await fetchJson(api('zenz', '/downloader/soundcloud', { url: isUrl(text)[0] }, 'apikey'))
@@ -2189,6 +2212,7 @@ case 'tiktokmp3': case 'tiktokaudio': {
             }
             break
 	        case 'twitdl': case 'twitter': {
+	        if (!isPremium) throw `emg lu premium banhh??`
                 if (!text) throw 'Masukkan Query Link!'
                 m.reply(mess.wait)
                 let anu = await fetchJson(api('zenz', '/api/downloader/twitter', { url: text }, 'apikey'))
@@ -2206,6 +2230,7 @@ case 'tiktokmp3': case 'tiktokaudio': {
             }
             break
             case 'twittermp3': case 'twitteraudio': {
+                if (!isPremium) throw `emg lu premium banhh??`
                 if (!text) throw 'Masukkan Query Link!'
                 m.reply(mess.wait)
                 let anu = await fetchJson(api('zenz', '/api/downloader/twitter', { url: text }, 'apikey'))
@@ -2224,6 +2249,7 @@ case 'tiktokmp3': case 'tiktokaudio': {
             }
             break
 	        case 'fbdl': case 'fb': case 'facebook': {
+	        if (!isPremium) throw `emg lu premium banhh??`
                 if (!text) throw 'Masukkan Query Link!'
                 m.reply(mess.wait)
                 let anu = await fetchJson(api('zenz', '/api/downloader/facebook', { url: text }, 'apikey'))
@@ -2231,6 +2257,7 @@ case 'tiktokmp3': case 'tiktokaudio': {
             }
             break
 	        case 'pindl': case 'pinterestdl': {
+	        if (!isPremium) throw `emg lu premium banhh??`
                 if (!text) throw 'Masukkan Query Link!'
                 m.reply(mess.wait)
                 let anu = await fetchJson(api('zenz', '/api/downloader/pinterestdl', { url: text }, 'apikey'))
@@ -2238,6 +2265,7 @@ case 'tiktokmp3': case 'tiktokaudio': {
             }
             break
             case 'umma': case 'ummadl': {
+                if (!isPremium) throw `emg lu premium banhh??`
 	        if (!text) throw `Example : ${prefix + command} https://umma.id/channel/video/post/gus-arafat-sumber-kecewa-84464612933698`
                 let { umma } = require('./lib) scraper')
 		let anu = await umma(isUrl(text)[0])
@@ -2279,7 +2307,8 @@ await liaacans.groupAcceptInvite(result).then((res) => m.reply(jsonformat(res)))
 break
 case 'leave': {
 if (!isCreator) throw mess.owner
-await liaacans.groupLeave(m.chat).then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
+   m.reply(`babay grup tolol:v`)
+await liaacans.groupLeave(m.chat)
 }
 break
 case 'block': {
@@ -2297,7 +2326,7 @@ break
 case 'public': {
                 if (!isCreator) throw mess.owner
                 liaacans.public = true
-                m.reply('*Sukse Change To Public Usage*')
+                m.reply('*Sukses Change To Public Usage*')
             }
             break
             case 'self': {
@@ -2327,8 +2356,10 @@ case 'assalamualaikum':{
 m.reply(`waalaikumsalam`)
 }
 break
-case 'hai':{
-m.reply(`hai juga kak`)
+case 'hai': {
+hai = `iya ada apa kak?`
+let buttons = [{ buttonId: 'menu', buttonText: { displayText: 'Menu' }, type: 1 }]
+liaacans.sendButtonText(m.chat, buttons, hai)
 }
 break
 case 'halo':{
