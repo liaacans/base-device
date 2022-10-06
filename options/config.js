@@ -1,28 +1,10 @@
-/* My Info
-* New Base Multi Device By Aulia Rahman
-* Please Follow Me On All Sosial Media
-* Instagram : https://instagram.com/auliarahman_ckep
-* Tiktok : https://tiktok.com/@liaacans'
-* Github : https://github.com/liacans
-* Youtube : https://youtube.com/AuliaRahmanOfficial123
-* Contact Me on wa.me/6285821676621
-*/
-
-/* My Web
-* Rest Api : -
-* Offc Web : https://indomiebase.my.id
-*/
-
-/* Thanks To
-* Zero TT7
-* Aulia Rahman
-* Dhika Ardiant
-* Mhankbarbar
-* Chaliph
-* Allah S.W.T
-* Ortu
-* All Creator Bot
-* All Subscriber Ku
+/* 
+NOTE : JGN HPS DIBAWAH INI!!
+SC ASLI : ZEROYT7
+RECODE : RAHMXBOT X RAHMAN GNTENG:V
+WHATSAPP : 085821676621
+NOMOR BOT : 085821369324
+NOTE : JGN HPS AUTHORNYA!!!
 */
 
 const fs = require('fs')
@@ -41,16 +23,17 @@ global.APIKeys = {
 }
 
 //━━━━━━━━━━━━━━━[ SETTING ]━━━━━━━━━━━━━━━━━//
-global.thumb = fs.readFileSync('./image/thumbnail.jpg') // JGN DI UBAH!
-global.name = 'Aulia Rahman (Owner)', // GNTI NAMA LU!
-global.owner = ['6285821676621'] // GNTI NOMOR LU!
+global.thumb = fs.readFileSync('./image/thumbnail.jpg') // JGN DI UBAH!
+global.name = 'Aulia Rahman (Owner)', // GNTI NAMA LU!
+global.creator = 'LiaaCans BOT' // GANTI NAMA BOT LU BANH!
+global.owner = ['6285821676621'] // GNTI NOMOR LU!
 global.premium = ['6285821676621']
 global.pulsa = ['081528965381'] // UBAH NOMOR YG AKTIF!
-global.botname = 'LiaaCans BOT' // GNTI NAMA BOT LU!
-global.packname = 'Nih Stikel Umtukmu' // TRSERAH MO GANTI AP!
-global.author = 'LiaaCans BOT' // GNTI NMA LU!
+global.botname = 'LiaaCans BOT' // GNTI NAMA BOT LU!
+global.packname = 'Nih Stikel Umtukmu' // TRSERAH MO GANTI AP!
+global.author = 'LiaaCans BOT' // GNTI NMA LU!
 global.prefa = ['','!','.','/','#','$']
-global.sp = '⭔' // JGN DI UBAH²! NTR EROR
+global.sp = '⭔' // JGN DI UBAH²! NTR EROR
 global.mess = {
 success: '*[SUCCESS]* SUKSES PERMINTAAN ANDA TERKIRIM!',
 admin: 'Fitur Khusus Admin Group!',
