@@ -4,6 +4,14 @@ RECODE : RAHMXBOT X RAHMAN GNTENG:V
 WHATSAPP : 085821676621
 NOMOR BOT : 085821369324
 NOTE : JGN HPS AUTHORNYA!!!
+
+DONASI LAH BANG BIAR 
+ADMINNYA UPDATE LAGI
+
+Kalau Mau Donasi Silahkan Pilih Yah
+Payment : Ovo/Gopay/Dana
+Number Payment : Chat Owner Wa nya Di Atas
+Pulsa : 081528965381
 */
 
 const fs = require('fs')
@@ -18,7 +26,7 @@ liaacans: 'https://zenzapis.xyz',
 //━━━━━━━━━━━━━━━[ APIKEY ]━━━━━━━━━━━━━━━━━//
 
 global.APIKeys = {
-'https://zenzapis.xyz': '0e92565522',
+'https://zenzapis.xyz': '9d30efca66',
 }
 
 //━━━━━━━━━━━━━━━[ SETTING ]━━━━━━━━━━━━━━━━━//
@@ -29,9 +37,10 @@ global.owner = ['6285821676621'] // GNTI NOMOR LU!
 global.premium = ['6285821676621']
 global.quotes = 'Kesempatan Anda Untuk Sukses Di Setiap Kondisi Selalu Dapat Diukur Oleh Seberapa Besar Kepercayaan Anda Pada Diri Sendiri' // Ganti Quotes, Tapi Trsrh Klian
 global.pulsa = ['081528965381'] // UBAH NOMOR YG AKTIF!
-global.botname = 'LiaaCans BOT' // GNTI NAMA BOT LU!
+global.botname = 'Created LiaaCans BOT' // GNTI NAMA BOT LU!
 global.packname = 'Nih Stikel Umtukmu' // TRSERAH MO GANTI AP!
 global.author = 'LiaaCans BOT' // GNTI NMA LU!
+global.fake = 'LIAACANS BOT VERIFIED' // GNTI NMA BOT LU BANH!
 global.prefa = ['','!','.','/','#','$']
 global.sp = '⭔' // JGN DI UBAH²! NTR EROR
 global.mess = {
