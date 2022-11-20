@@ -1,0 +1,59 @@
+{
+  "FREEFIRE": {
+    "5": {
+    "nama": "5 Diamond Free Fire"
+    "hargaid": 1261
+    "harga":"Rp1.261"
+    },
+        "12": {
+    "nama": "12 Diamond Free Fire"
+    "hargaid": 2523
+    "harga":"Rp2.523"
+    },
+        "50": {
+    "nama": "50 Diamond Free Fire"
+    "hargaid": 8500
+    "harga":"Rp8.500"
+    },
+        "70": {
+    "nama": "70 Diamond Free Fire"
+    "hargaid": 11000
+    "harga":"Rp11.000"
+    },
+        "140": {
+    "nama": "140 Diamond Free Fire"
+    "hargaid": 21000
+    "harga":"Rp21.000"
+    },
+        "355": {
+    "nama": "355 Diamond Free Fire"
+    "hargaid": 51500
+    "harga":"Rp51.500"
+    },
+        "720": {
+    "nama": "720 Diamond Free Fire"
+    "hargaid": 105000
+    "harga":"Rp105.000"
+    },
+        "1450": {
+    "nama": "1450 Diamond Free Fire"
+    "hargaid": 210000
+    "harga":"Rp210.000"
+    },
+        "2180": {
+    "nama": "2180 Diamond Free Fire"
+    "hargaid": 315000
+    "harga":"Rp315.000"
+    },
+        "3640": {
+    "nama": "3640 Diamond Free Fire"
+    "hargaid": 525000
+    "harga":"Rp525.000"
+    },
+        "7290": {
+    "nama": "7290 Diamond Free Fire"
+    "hargaid": 1050000
+    "harga":"Rp1050.000"
+    },
+ },
+},

@@ -1,0 +1,46 @@
+{
+  "FREEFIRE": {
+    "5": {
+      "productId": "3",
+      "itemId": "353",
+      "catalogId": "376",
+      "paymentId": "2037"
+    },
+    "12": {
+      "productId": "3",
+      "itemId": "10",
+      "catalogId": "65",
+      "paymentId": "2039"
+    },
+    "70": {
+      "productId": "3",
+      "itemId": "12",
+      "catalogId": "67",
+      "paymentId": "2044"
+    },
+    "140": {
+      "productId": "3",
+      "itemId": "13",
+      "catalogId": "68",
+      "paymentId": "2046"
+    },
+    "355": {
+      "productId": "3",
+      "itemId": "14",
+      "catalogId": "69",
+      "paymentId": "2048"
+    },
+    "720": {
+      "productId": "3",
+      "itemId": "15",
+      "catalogId": "70",
+      "paymentId": "2050"
+    },
+    "1450": {
+      "productId": "3",
+      "itemId": "16",
+      "catalogId": "71",
+      "paymentId": "2052"
+    }
+  }
+}
