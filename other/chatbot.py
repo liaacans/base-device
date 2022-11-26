@@ -74,3 +74,4 @@ while(True):
 
 
 #// Subscribe Channel Yt Aulia Rahman Official //#
+#// JANGAN LUPA LIKE AND SHARE JUGA YAK🥰 //#
