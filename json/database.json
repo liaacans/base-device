@@ -3,14 +3,52 @@
     "6285821676621@s.whatsapp.net": {
       "afkTime": -1,
       "afkReason": "",
-      "limit": "Infinity"
+      "limit": "Unlimited"
+    },
+    "6281545463585@s.whatsapp.net": {
+      "afkTime": -1,
+      "afkReason": "",
+      "limit": 10
+    },
+    "6285821369324@s.whatsapp.net": {
+      "afkTime": -1,
+      "afkReason": "",
+      "limit": "Unlimited"
+    },
+    "6285269819432@s.whatsapp.net": {
+      "afkTime": -1,
+      "afkReason": "",
+      "limit": 10
     }
   },
   "chats": {
     "6285821676621@s.whatsapp.net": {
       "mute": false,
       "antilink": false,
-      "antiwame": true
+      "antilinkig": false,
+      "antiwame": false,
+      "antiviewonce": false
+    },
+    "120363042977369558@g.us": {
+      "mute": false,
+      "antilink": false,
+      "antilinkig": false,
+      "antiwame": false,
+      "antiviewonce": false
+    },
+    "62895617734684-1560420121@g.us": {
+      "mute": false,
+      "antilink": false,
+      "antilinkig": false,
+      "antiwame": false,
+      "antiviewonce": false
+    },
+    "6283838680737@s.whatsapp.net": {
+      "mute": false,
+      "antilink": false,
+      "antilinkig": false,
+      "antiwame": false,
+      "antiviewonce": false
     }
   },
   "database": {},
@@ -28,12 +66,21 @@
   },
   "settings": {
     "6285821369324@s.whatsapp.net": {
-      "status": 1664194912887,
-      "autobio": true
+      "status": 1670672548339,
+      "autobio": true,
+      "autotyping": true
     }
   },
   "others": {
-    "vote": []
+    "vote": [],
+    "menfes": [],
+    "user": [
+      {
+        "id": "6285821369324@s.whatsapp.net",
+        "name": "#GRo8Mkv",
+        "seri": "dELKBELcwR"
+      }
+    ]
   },
   "sticker": {}
 }
